@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+* {
+    font-family: 'Quicksand', sans-serif;
+    color: #1c1c1c;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

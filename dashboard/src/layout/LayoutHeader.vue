@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+defineProps({
+  breadcrumbListArray: Array
+})
+</script>
 
 <template>
   <header class="main--header">
@@ -40,11 +44,9 @@
         </svg>
       </button>
       <ul class="breadcrumb-list">
-        <li>
-          <router-link to="/">home</router-link>
-        </li>
-        <li>
-          <p>Dashboards</p>
+        <li v-for="(item, index) in breadcrumbListArray" :key="index">
+          <router-link :to="item.path" v-if="item.path">{{ item.name }}</router-link>
+          <p v-else>{{ item.name }}</p>
         </li>
       </ul>
     </div>
@@ -97,7 +99,7 @@
 }
 
 button {
-  @apply size-9 flex items-center justify-center rounded;
+  @apply size-9 flex items-center justify-center rounded-lg;
 }
 
 button:hover,

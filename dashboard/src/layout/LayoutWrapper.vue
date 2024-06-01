@@ -1,13 +1,17 @@
 <script setup>
 import LayoutSideBar from '@/layout/LayoutSideBar.vue'
 import LayoutHeader from '@/layout/LayoutHeader.vue'
+
+defineProps({
+  breadcrumbList: Array
+})
 </script>
 
 <template>
   <main class="layout">
     <LayoutSideBar />
     <section class="main--content">
-      <LayoutHeader />
+      <LayoutHeader :breadcrumbListArray="breadcrumbList" />
       <div class="w-full h-full bg-bg-body overflow-auto py-4 bg-white1">
         <div class="max-w-6xl mx-auto px-2">
           <slot></slot>

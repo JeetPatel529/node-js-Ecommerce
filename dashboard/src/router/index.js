@@ -7,6 +7,16 @@ const router = createRouter({
       path: '/',
       name: 'index',
       component: () => import('@/pages/Index.vue')
+    },
+    {
+      path: '/category',
+      children: [
+        {
+          path: 'list',
+          name: 'categoryIndex',
+          component: () => import('@/pages/category/Index.vue')
+        }
+      ]
     }
   ]
 })

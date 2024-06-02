@@ -9,3 +9,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.input-group {
+    @apply w-full border border-solid border-black-20 rounded-xl py-3 px-3.5 space-y-1.5
+}
+
+.input-group label {
+    @apply text-sm capitalize text-black-80 block cursor-pointer
+}
+
+.input-group .input {
+    @apply w-full outline-none text-base text-black-100
+}
+
+.input-group textarea {
+    @apply resize-none min-h-[80px]
+}
+
+.input-group .input::placeholder {
+    @apply text-black-20
+}
+
+.input-group.error {
+    @apply border-red-600
+}
+
+.input-group.error label {
+    @apply text-red-600
+}
+
+.form--btn {
+    @apply w-full block rounded-xl bg-black-20 py-2.5 px-4 relative
+}
+
+.form--btn.save {
+    @apply bg-black-100 text-white
+}
+
+.form--btn.save:disabled {
+    @apply cursor-no-drop bg-opacity-25
+}
+
+.options--btn {
+    @apply w-full px-3.5 py-2 flex items-center justify-between
+}
+
+.options--btn p {
+    @apply text-base capitalize
+}

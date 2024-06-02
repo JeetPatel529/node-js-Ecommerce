@@ -1,9 +1,15 @@
-<script setup></script>
+<script setup>
+const emit = defineEmits(['addBtn'])
+
+function handleAddFun() {
+  emit('addBtn')
+}
+</script>
 
 <template>
   <div class="rounded-lg px-2.5 py-2 flex items-center justify-between w-full bg-[#F7F9FB]">
     <div class="flex items-center gap-2.5">
-      <button>
+      <button @click="handleAddFun">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

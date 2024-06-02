@@ -13,7 +13,7 @@ defineProps({
     <section class="main--content">
       <LayoutHeader :breadcrumbListArray="breadcrumbList" />
       <div class="w-full h-full bg-bg-body overflow-auto py-4 bg-white1">
-        <div class="max-w-6xl mx-auto px-2">
+        <div class="max-w-6xl mx-auto px-2 h-full">
           <slot></slot>
         </div>
       </div>

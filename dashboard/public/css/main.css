@@ -13,7 +13,7 @@
 
 
 .input-group {
-    @apply w-full border border-solid border-black-20 rounded-xl py-3 px-3.5 space-y-1.5
+    @apply w-full border border-solid border-black-20 rounded-xl py-3 px-3.5 space-y-1.5 relative
 }
 
 .input-group label {
@@ -28,8 +28,9 @@
     @apply resize-none min-h-[80px]
 }
 
-.input-group .input::placeholder {
-    @apply text-black-20
+.input-group .input::placeholder,
+.input-group .placeholder--text {
+    @apply text-black-20 line-clamp-1
 }
 
 .input-group.error {
@@ -58,4 +59,8 @@
 
 .options--btn p {
     @apply text-base capitalize
+}
+
+.input-group input[type="file"] {
+    @apply absolute inset-0 w-full h-full opacity-0
 }

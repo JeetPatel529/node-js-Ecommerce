@@ -1,0 +1,4 @@
+<template>
+  <SectionAboutUs />
+  <SectionWhyChooseUs />
+</template>

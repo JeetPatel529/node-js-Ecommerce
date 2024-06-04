@@ -28,8 +28,7 @@
     @apply resize-none min-h-[80px]
 }
 
-.input-group .input::placeholder,
-.input-group .placeholder--text {
+.input-group .input::placeholder {
     @apply text-black-20 line-clamp-1
 }
 
@@ -63,4 +62,8 @@
 
 .input-group input[type="file"] {
     @apply absolute inset-0 w-full h-full opacity-0
+}
+
+.input-group .placeholder--text {
+    @apply rounded-full bg-gray-200 line-clamp-1 px-2.5 py-1 text-sm text-black-40 w-fit
 }

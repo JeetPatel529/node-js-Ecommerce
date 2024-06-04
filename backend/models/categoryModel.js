@@ -61,3 +61,4 @@ const Category = sequelize.define('Category', {
 console.log(Category === sequelize.models.Category);
 
 module.exports = Category;
+    

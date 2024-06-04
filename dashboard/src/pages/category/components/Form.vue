@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import ModalLayout from '@/components/ModalLayout.vue'
 
 defineProps({
@@ -7,6 +8,13 @@ defineProps({
 
 const emit = defineEmits(['close'])
 
+const formData = ref({
+  image: null,
+  backgroundImage: null,
+  name: '',
+  description: ''
+})
+
 function closeModal(status) {
   if (status) {
     emit('close', status)
@@ -14,29 +22,65 @@ function closeModal(status) {
     emit('close')
   }
 }
+
+async function handleSubmit() {
+  try {
+    const form = new FormData()
+    form.append('image', formData.value.image)
+    form.append('backgroundImage', formData.value.backgroundImage)
+    form.append('name', formData.value.name)
+    form.append('description', formData.value.description)
+
+    const response = await fetch('your-api-endpoint', {
+      method: 'POST',
+      body: form
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to save data')
+    }
+
+    closeModal(true)
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <template>
   <ModalLayout :isOpen="isOpen" @close="closeModal">
-    <form class="space-y-6">
+    <form class="space-y-6" @submit.prevent="handleSubmit">
       <div class="space-y-2.5">
         <div class="input-group">
           <label>Image*</label>
-          <p class="placeholder--text">Choose Image For Category(Click Here)</p>
-          <input type="file" placeholder="Enter category name" class="input" />
+          <p class="placeholder--text">Choose File</p>
+          <input type="file" class="input" @change="(e) => (formData.image = e.target.files[0])" />
         </div>
         <div class="input-group">
           <label>Background Image*</label>
-          <p class="placeholder--text">Choose Background Image For Category Page(Click Here)</p>
-          <input type="file" placeholder="Enter category name" class="input" />
+          <p class="placeholder--text">Choose File</p>
+          <input
+            type="file"
+            class="input"
+            @change="(e) => (formData.backgroundImage = e.target.files[0])"
+          />
         </div>
         <div class="input-group">
           <label>Name*</label>
-          <input type="text" placeholder="Enter category name" class="input" />
+          <input
+            type="text"
+            placeholder="Enter category name"
+            class="input"
+            v-model="formData.name"
+          />
         </div>
         <div class="input-group">
-          <label>description*</label>
-          <textarea class="input" placeholder="Enter category description"></textarea>
+          <label>Description*</label>
+          <textarea
+            class="input"
+            placeholder="Enter category description"
+            v-model="formData.description"
+          ></textarea>
         </div>
       </div>
       <div class="w-full grid grid-cols-2 gap-4 px-2.5">

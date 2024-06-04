@@ -114,10 +114,8 @@ import { RouterLink } from "vue-router";
     <div class="footer-column">
       <h5 class="footer-title">Shop</h5>
       <div class="footer-colum-wrap-links">
-        <router-link to="/categories" class="link">All Products</router-link>
-        <router-link to="/product-list/Landscape_Painting" class="link"
-          >Landscape Painting</router-link
-        >
+        <router-link to="/" class="link">All Products</router-link>
+        <router-link to="/" class="link">Landscape Painting</router-link>
         <router-link to="/" class="link">Color Field Art</router-link>
         <router-link to="/" class="link">Fine Art</router-link>
         <router-link to="/" class="link">Digital Art</router-link>
@@ -134,18 +132,14 @@ import { RouterLink } from "vue-router";
     <div class="footer-column">
       <h5 class="footer-title">About Us</h5>
       <div class="footer-colum-wrap-links">
-        <router-link to="/about-us" class="link">About Us</router-link>
+        <router-link to="/" class="link">About Us</router-link>
         <router-link to="/" class="link">Blog</router-link>
       </div>
       <h5 class="footer-title"></h5>
       <div class="footer-colum-wrap-links">
         <router-link to="/" class="link">Shipping & returns</router-link>
-        <router-link to="/terms-&-conditions" class="link"
-          >Terms & conditions</router-link
-        >
-        <router-link to="/privacy-policy" class="link"
-          >Privacy policy</router-link
-        >
+        <router-link to="/" class="link">Terms & conditions</router-link>
+        <router-link to="/" class="link">Privacy policy</router-link>
       </div>
     </div>
   </footer>

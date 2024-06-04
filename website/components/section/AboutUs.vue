@@ -1,4 +1,14 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const aboutDetails = {
+  about_title: "Jeet Art_Blooms",
+  about_desc:
+    "Welcome to Jeet Art_Blooms, where we transform emotions into art. With a passion for creativity, we curate an array of exquisite paintings that inspire and captivate. Our journey began with a simple love for art, and over 56 years, we've evolved into a destination that brings stories to life through every brushstroke.",
+  about_sub_title:
+    " Feel free to customize this version to suit your shop's narrative.",
+};
+</script>
 
 <template>
   <section class="w-100 border-b container aboutsection">
@@ -7,17 +17,9 @@
     </div>
     <div class="grid-wrapper-right content">
       <p class="overline">OUR STORY</p>
-      <h3 class="title">Jeet Art_Blooms</h3>
-      <p class="sub-title">
-        Welcome to Jeet Art_Blooms, where we transform emotions into art. With a
-        passion for creativity, we curate an array of exquisite paintings that
-        inspire and captivate. Our journey began with a simple love for art, and
-        over 56 years, we've evolved into a destination that brings stories to
-        life through every brushstroke.
-      </p>
-      <p class="sub-title">
-        Feel free to customize this version to suit your shop's narrative.
-      </p>
+      <h3 class="title">{{ aboutDetails.about_title }}</h3>
+      <p class="sub-title">{{ aboutDetails.about_desc }}</p>
+      <p class="sub-title">{{ aboutDetails.about_sub_title }}</p>
       <a class="button">Learn more</a>
     </div>
   </section>

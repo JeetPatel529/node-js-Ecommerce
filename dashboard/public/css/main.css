@@ -44,6 +44,14 @@
     @apply w-full block rounded-xl bg-black-20 py-2.5 px-4 relative
 }
 
+.delete--btn {
+    @apply block rounded-xl bg-black-10 py-1 px-3.5 relative text-base
+}
+
+.delete--btn.save {
+    @apply bg-red-500 text-white
+}
+
 .form--btn.save {
     @apply bg-black-100 text-white
 }

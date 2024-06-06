@@ -1,8 +1,10 @@
+// categoryModel.js
+
 const { DataTypes, UUIDV4 } = require('sequelize');
 const sequelize = require('./index');
 
 const Category = sequelize.define('Category', {
-    id: {
+    category_id: {
         type: DataTypes.UUID,
         defaultValue: UUIDV4,
         primaryKey: true,
@@ -17,6 +19,14 @@ const Category = sequelize.define('Category', {
         unique: {
             args: true,
             msg: 'Category name must be unique'
+        },
+    },
+    category_description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: 'Category description cannot be null' },
+            notEmpty: { msg: 'Category description cannot be empty' }
         },
     },
     category_visitor: {
@@ -36,18 +46,12 @@ const Category = sequelize.define('Category', {
         },
     },
     category_img: {
-        type: DataTypes.STRING,
+        type: DataTypes.BLOB('long'),
         allowNull: true,
-        validate: {
-            isUrl: { msg: 'Category image must be a valid URL' },
-        },
     },
     category_bg_img: {
-        type: DataTypes.STRING,
+        type: DataTypes.BLOB('long'),
         allowNull: true,
-        validate: {
-            isUrl: { msg: 'Category background image must be a valid URL' },
-        },
     },
     is_delete: {
         type: DataTypes.BOOLEAN,
@@ -61,4 +65,3 @@ const Category = sequelize.define('Category', {
 console.log(Category === sequelize.models.Category);
 
 module.exports = Category;
-    

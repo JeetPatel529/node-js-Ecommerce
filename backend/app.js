@@ -1,34 +1,39 @@
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config();
 
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const cors = require('cors');
-const upload = multer();
 
-// Enable Cross-Origin Resource Sharing (CORS)
+const routers = require('./routers')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 
+app.use('/public', express.static('public'));
+app.use(upload.fields([{ name: 'category_img', maxCount: 1 }, { name: 'category_bg_img', maxCount: 1 }]));
 
-require("./routers")
+app.use('/', routers.categoryRouter);
 
-// Configure body parser for URL-encoded form data
-app.use(bodyParser.urlencoded({ extended: false }));
-// Configure body parser for JSON data
-app.use(bodyParser.json());
-
-// Handle multipart/form-data
-app.use(upload.none());
-
-// Set the PORT from environment variables or default to 0 if not specified
 const PORT = process.env.PORT || 0;
 
-// Start the server and listen on the specified port
 app.listen(PORT, (err) => {
     if (err) {
-        console.log("PORT ERROR", err); // Log error if there is an issue with the port
+        console.log("PORT ERROR", err);
     } else {
-        console.log(`App running on port ${PORT}`); // Log success message with the port number
+        console.log(`App running on port ${PORT}`);
     }
 });

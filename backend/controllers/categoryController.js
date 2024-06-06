@@ -3,15 +3,20 @@ const responseHandle = require('../helpers/responseHandlers');
 
 
 const createCategory = async (req, res) => {
+    console.log(req)
     try {
-        const { category_name, category_visitor, category_total_item, category_img, category_bg_img } = req.body;
+        const { category_name, category_visitor, category_total_item, category_description } = req.body;
+
+        const category_img = req.files['category_img'] ? req.files['category_img'][0].filename : null;
+        const category_bg_img = req.files['category_bg_img'] ? req.files['category_bg_img'][0].filename : null;
 
         const category = await categoryModel.create({
             category_name,
             category_visitor,
             category_total_item,
             category_img,
-            category_bg_img
+            category_bg_img,
+            category_description
         });
 
         return responseHandle.successResponseWithData(res, 'Category created successfully', category);

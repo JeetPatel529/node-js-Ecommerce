@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { apihelper } from '@/helpers'
 import ModalLayout from '@/components/ModalLayout.vue'
 
 defineProps({
@@ -16,34 +17,17 @@ const formData = ref({
 })
 
 function closeModal(status) {
-  if (status) {
-    emit('close', status)
-  } else {
-    emit('close')
-  }
+  emit('close', status || null)
 }
 
 async function handleSubmit() {
-  try {
-    const form = new FormData()
-    form.append('image', formData.value.image)
-    form.append('backgroundImage', formData.value.backgroundImage)
-    form.append('name', formData.value.name)
-    form.append('description', formData.value.description)
-
-    const response = await fetch('your-api-endpoint', {
-      method: 'POST',
-      body: form
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to save data')
-    }
-
-    closeModal(true)
-  } catch (error) {
-    console.error(error)
-  }
+  const form_data = new FormData()
+  form_data.append('category_img', formData.value.image)
+  form_data.append('category_bg_img', formData.value.backgroundImage)
+  form_data.append('category_name', formData.value.name)
+  form_data.append('category_description', formData.value.description)
+  const response = await apihelper('add-category', form_data)
+  console.log(response)
 }
 </script>
 

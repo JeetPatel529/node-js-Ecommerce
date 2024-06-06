@@ -7,8 +7,21 @@ onMounted(() => {
   notify(
     {
       group: 'foo',
-      title: 'Success',
-      text: 'Your account was registered!'
+      title: 'create new user successfully'
+    },
+    1500
+  )
+  notify(
+    {
+      group: 'foo',
+      title: 'user Deleted  successfully'
+    },
+    1500
+  )
+  notify(
+    {
+      group: 'foo',
+      title: 'user updated successfully'
     },
     1500
   )

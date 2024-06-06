@@ -13,6 +13,12 @@ const routerArray = ref([
     router_name: 'Category',
     router_link: '/category/list',
     active_path: '/'
+  },
+  {
+    id: '#hs9s02',
+    router_name: 'Products',
+    router_link: '/products/list',
+    active_path: '/'
   }
 ])
 </script>

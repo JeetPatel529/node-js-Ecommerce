@@ -1,12 +1,10 @@
-// categoryModel.js
-
-const { DataTypes, UUIDV4 } = require('sequelize');
+const { DataTypes, UUIDV1 } = require('sequelize');
 const sequelize = require('./index');
 
 const Category = sequelize.define('Category', {
     category_id: {
         type: DataTypes.UUID,
-        defaultValue: UUIDV4,
+        defaultValue: UUIDV1,
         primaryKey: true,
     },
     category_name: {
@@ -46,20 +44,24 @@ const Category = sequelize.define('Category', {
         },
     },
     category_img: {
-        type: DataTypes.BLOB('long'),
-        allowNull: true,
+        type: DataTypes.TEXT,
     },
     category_bg_img: {
-        type: DataTypes.BLOB('long'),
-        allowNull: true,
+        type: DataTypes.TEXT,
     },
     is_delete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    category_status: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
 }, {
     tableName: 'category__data',
     timestamps: true,
+    updatedAt: 'updated_at',
+    createdAt: 'created_at',
 });
 
 console.log(Category === sequelize.models.Category);

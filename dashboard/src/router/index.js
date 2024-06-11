@@ -17,6 +17,16 @@ const router = createRouter({
           component: () => import('@/pages/category/Index.vue')
         }
       ]
+    },
+    {
+      path: '/products',
+      children: [
+        {
+          path: 'list',
+          name: 'productsIndex',
+          component: () => import('@/pages/product/Index.vue')
+        }
+      ]
     }
   ]
 })

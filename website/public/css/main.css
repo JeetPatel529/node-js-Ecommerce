@@ -214,7 +214,7 @@ a:hover {
     width: 100%;
 }
 
-.container .sticky {
+.sticky {
     position: sticky;
 }
 
@@ -236,4 +236,105 @@ a:hover {
 
 .border-t {
     border-top: 1px solid #000000;
+}
+
+.herosection .height-full {
+    height: 90dvh;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.shop-card-category {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    display: grid;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.shop-card-category:nth-last-child(1) {
+    border-bottom: 0;
+}
+
+.shop-card-category .card-category {
+    width: 100%;
+    height: 25vw;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.23vw;
+    display: flex;
+    position: relative;
+}
+
+.shop-card-category .card-category:nth-child(odd) {
+    border-right: 1px solid #000000;
+}
+
+.shop-card-category .card-category:nth-child(even) {
+    border-left: 1px solid #000000;
+}
+
+.shop-card-category .card-category .content-card {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.shop-card-category .card-category .content-card .link {
+    align-items: center;
+    transition: all 0.3s ease-out;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+}
+
+.shop-card-category .card-category .content-card .link img {
+    width: 1.77vw;
+    height: 1.77vw;
+}
+
+.shop-card-category .card-category .content-card .link p {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.shop-card-category .card-category .content-card .link-icon-right img {
+    margin-left: 0.28vw;
+}
+
+.shop-card-category .card-category .content-card .link-icon-left {
+    flex-direction: row-reverse;
+}
+
+.shop-card-category .card-category .content-card .link-icon-left img {
+    rotate: 180deg;
+    margin-right: 0.28vw;
+}
+
+.shop-card-category .card-category-img {
+    max-width: 100%;
+    display: inline-block;
+    height: 25dvw;
+}
+
+.shop-card-category .card-category-img img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: 50% 50%;
+    object-position: 50% 50%;
+    display: block;
 }

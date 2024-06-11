@@ -1,3 +1,11 @@
-const categoryRouter = require('./categoryRouter')
+const express = require("express");
+const app = express();
+const categoryRouter = require("./categoryRouter")
 
-module.exports = { categoryRouter }
+
+app.use("/", categoryRouter)
+
+
+
+
+module.exports = app

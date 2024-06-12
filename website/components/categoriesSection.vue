@@ -9,8 +9,8 @@
         </div>
       </div>
     </div>
-    <div class="grid-wrapper-right"></div>
+    <ul class="grid-wrapper-right">
+      <slot></slot>
+    </ul>
   </section>
 </template>
-
-<style scoped></style>

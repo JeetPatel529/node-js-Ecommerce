@@ -1,4 +1,5 @@
 <template>
+  <SectionHeroSection />
   <SectionAboutUs />
   <SectionWhyChooseUs />
   <SectionOurService />

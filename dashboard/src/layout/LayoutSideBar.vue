@@ -1,6 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 
+const props = defineProps({
+  activeSideBar: {
+    type: Boolean,
+    default: true
+  }
+})
+
 const routerArray = ref([
   {
     id: '#jac90s',
@@ -24,7 +31,10 @@ const routerArray = ref([
 </script>
 
 <template>
-  <aside class="sidebars leftSideBar leftSideBar_active space-y-6">
+  <aside
+    class="sidebars leftSideBar space-y-6"
+    :class="{ leftSideBar_active: props.activeSideBar }"
+  >
     <div class="w-full p-1 flex items-center space-x-3">
       <img
         src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
@@ -153,11 +163,11 @@ const routerArray = ref([
 }
 
 .sidebars.leftSideBar.leftSideBar_active {
-  @apply translate-x-0;
+  @apply translate-x-0 py-6 px-4 w-full max-w-56;
 }
 
 .leftSideBar {
-  @apply border-r border-solid border-black-10 w-full max-w-56 py-6 px-4;
+  @apply border-r border-solid border-black-10 w-0;
 }
 
 .fav--link {

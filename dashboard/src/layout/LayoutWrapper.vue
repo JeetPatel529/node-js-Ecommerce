@@ -1,17 +1,24 @@
 <script setup>
 import LayoutSideBar from '@/layout/LayoutSideBar.vue'
 import LayoutHeader from '@/layout/LayoutHeader.vue'
+import { ref } from 'vue'
 
 defineProps({
   breadcrumbList: Array
 })
+
+const sidebarActive = ref(true)
+
+function toggleSidebar() {
+  sidebarActive.value = !sidebarActive.value
+}
 </script>
 
 <template>
   <main class="layout">
-    <LayoutSideBar />
+    <LayoutSideBar :activeSideBar="sidebarActive" />
     <section class="main--content">
-      <LayoutHeader :breadcrumbListArray="breadcrumbList" />
+      <LayoutHeader :breadcrumbListArray="breadcrumbList" @toggle_sidebar="toggleSidebar" />
       <div class="w-full h-full bg-bg-body overflow-y-auto py-4 bg-white1">
         <div class="max-w-6xl mx-auto px-2 h-full">
           <slot></slot>

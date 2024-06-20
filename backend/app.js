@@ -1,23 +1,27 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require("express");
+const bodyParser = require('body-parser');
+const routers = require("./routers");
+
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-const bodyParser = require('body-parser')
+app.use("/", routers.categoryRouter);
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use((req, res, next) => {
+    res.status(404).json({ error: "Route not found" });
+});
 
-
-require("./routers")
-
-const PORT = process.env.PORT || 0;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, (e) => {
     if (e) {
         console.log(e);
+    } else {
+        console.log(`App running on port ${PORT}`);
     }
-    else {
-        console.log(`app run in this PORT ${PORT}`);
-    }
-})
+});
+
+module.exports = app;

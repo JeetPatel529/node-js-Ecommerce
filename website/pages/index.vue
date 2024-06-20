@@ -1,5 +1,5 @@
 <template>
-  <SectionHeroSection />
+  <!-- <SectionHeroSection /> -->
   <SectionAboutUs />
   <SectionWhyChooseUs />
   <SectionOurService />

@@ -4,11 +4,15 @@ const BASEURL = `${import.meta.env.VITE_API_URL}`;
 
 export async function apihelper(apiName, formData) {
     try {
-        const response = await axios.post(`${BASEURL}${apiName}`, formData);
+        const response = await axios.post(`${BASEURL}/${apiName}`, formData);
 
         if (response) {
             return response;
         }
+        else {
+            console.log(response)
+        }
+
     } catch (error) {
         console.error(error);
     }

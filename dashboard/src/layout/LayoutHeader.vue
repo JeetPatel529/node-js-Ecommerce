@@ -6,7 +6,7 @@ defineProps({
 
 <template>
   <header class="main--header">
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center space-x-4" @click="$emit('toggle_sidebar')">
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"

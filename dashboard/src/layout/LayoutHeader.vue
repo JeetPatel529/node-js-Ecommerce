@@ -1,13 +1,19 @@
 <script setup>
+import { useModeStore } from '@/stores'
+
 defineProps({
   breadcrumbListArray: Array
 })
+
+function toggleMode() {
+  useModeStore().toggleMode()
+}
 </script>
 
 <template>
   <header class="main--header">
-    <div class="flex items-center space-x-4" @click="$emit('toggle_sidebar')">
-      <button>
+    <div class="flex items-center space-x-4">
+      <button @click="$emit('toggle_sidebar')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -51,6 +57,134 @@ defineProps({
       </ul>
     </div>
     <div class="flex items-center space-x-3">
+      <button class="fillnone" @click="toggleMode">
+        <svg
+          class="dark:block hidden"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-opacity="0.1"
+            d="M12 17.625C15.1066 17.625 17.625 15.1066 17.625 12C17.625 8.8934 15.1066 6.375 12 6.375C8.8934 6.375 6.375 8.8934 6.375 12C6.375 15.1066 8.8934 17.625 12 17.625Z"
+            class="fill-[#1C1C1C] dark:!fill-white"
+          />
+          <path
+            d="M12 17.625C15.1066 17.625 17.625 15.1066 17.625 12C17.625 8.8934 15.1066 6.375 12 6.375C8.8934 6.375 6.375 8.8934 6.375 12C6.375 15.1066 8.8934 17.625 12 17.625Z"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 3.375V2.625"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M5.89707 5.89609L5.37207 5.37109"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M3.375 12H2.625"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M5.89707 18.1016L5.37207 18.6266"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 20.625V21.375"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M18.1035 18.1016L18.6285 18.6266"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M20.625 12H21.375"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M18.1035 5.89609L18.6285 5.37109"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <svg
+          class="dark:hidden block"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            opacity="0.2"
+            d="M20.316 14.3055C18.8435 14.7184 17.2876 14.7319 15.8081 14.3447C14.3287 13.9574 12.979 13.1834 11.8976 12.102C10.8162 11.0206 10.0421 9.67089 9.6549 8.19143C9.26766 6.71197 9.28119 5.1561 9.69411 3.68359C8.24235 4.08767 6.92181 4.86505 5.86399 5.93831C4.80618 7.01157 4.04802 8.34325 3.66504 9.80071C3.28205 11.2582 3.2876 12.7905 3.68114 14.2452C4.07468 15.6998 4.84247 17.026 5.90804 18.0915C6.9736 19.1571 8.29976 19.9249 9.7544 20.3184C11.209 20.712 12.7414 20.7175 14.1989 20.3345C15.6563 19.9516 16.988 19.1934 18.0613 18.1356C19.1345 17.0778 19.9119 15.7572 20.316 14.3055Z"
+            class="fill-[#1C1C1C] dark:!fill-white"
+          />
+          <path
+            d="M20.25 10.5V6"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M22.5 8.25H18"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M15.75 2.25V5.25"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M17.25 3.75H14.25"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M20.316 14.3055C18.8435 14.7184 17.2876 14.7319 15.8081 14.3447C14.3287 13.9574 12.979 13.1834 11.8976 12.102C10.8162 11.0206 10.0421 9.67089 9.6549 8.19143C9.26766 6.71197 9.28119 5.1561 9.69411 3.68359C8.24235 4.08767 6.92181 4.86505 5.86399 5.93831C4.80618 7.01157 4.04802 8.34325 3.66504 9.80071C3.28205 11.2582 3.2876 12.7905 3.68114 14.2452C4.07468 15.6998 4.84247 17.026 5.90804 18.0915C6.9736 19.1571 8.29976 19.9249 9.7544 20.3184C11.209 20.712 12.7414 20.7175 14.1989 20.3345C15.6563 19.9516 16.988 19.1934 18.0613 18.1356C19.1345 17.0778 19.9119 15.7572 20.316 14.3055V14.3055Z"
+            class="stroke-[#1C1C1C] dark:!stroke-white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +229,7 @@ defineProps({
 
 <style scoped>
 .main--header {
-  @apply w-full px-4 py-2 border-b border-solid border-black-10 flex items-center justify-between;
+  @apply w-full px-4 py-2 border-b border-solid border-black-10 dark:border-white-20  flex items-center justify-between;
 }
 
 button {
@@ -104,7 +238,7 @@ button {
 
 button:hover,
 button:focus {
-  @apply bg-black-10;
+  @apply bg-black-10 dark:bg-white-5;
 }
 
 button svg {
@@ -113,6 +247,10 @@ button svg {
 
 button svg path {
   @apply fill-black-100 dark:fill-white;
+}
+
+button.fillnone svg path {
+  @apply fill-none;
 }
 
 .breadcrumb-list {
@@ -129,7 +267,7 @@ button svg path {
 }
 
 .breadcrumb-list li p {
-  @apply text-black-40;
+  @apply text-black-40 dark:text-white-40;
 }
 
 .breadcrumb-list li:nth-last-child(1)::after {

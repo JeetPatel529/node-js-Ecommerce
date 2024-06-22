@@ -167,7 +167,7 @@ const routerArray = ref([
 }
 
 .leftSideBar {
-  @apply border-r border-solid border-black-10 w-0;
+  @apply border-r border-solid border-black-10 dark:border-white-20 w-0;
 }
 
 .fav--link {
@@ -175,7 +175,7 @@ const routerArray = ref([
 }
 
 .side--com-title {
-  @apply px-1.5 py-1 text-black-40 cursor-pointer;
+  @apply px-1.5 py-1 text-black-40 dark:text-white-80 cursor-pointer;
 }
 
 .router--link {
@@ -191,6 +191,6 @@ const routerArray = ref([
 }
 
 .router--link.active {
-  @apply bg-black-10;
+  @apply bg-black-10 dark:bg-white-20;
 }
 </style>

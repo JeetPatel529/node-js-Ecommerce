@@ -1,5 +1,6 @@
 <script setup>
 import OptionWrapper from '@/components/OptionWrapper.vue'
+import CategoryDetails from '@/pages/category/components/CategoryDetails.vue'
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import OptionWrapper from '@/components/OptionWrapper.vue'
       <div class="status"></div>
       <div class="options"></div>
     </div>
-    <div class="list---row">
+    <VDropdown class="list---row">
       <div class="cName">
         <p>This is Category</p>
       </div>
@@ -46,7 +47,10 @@ import OptionWrapper from '@/components/OptionWrapper.vue'
           </button>
         </OptionWrapper>
       </div>
-    </div>
+      <template #popper>
+        <CategoryDetails />
+      </template>
+    </VDropdown>
   </div>
 </template>
 

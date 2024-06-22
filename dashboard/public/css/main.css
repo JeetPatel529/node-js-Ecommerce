@@ -80,3 +80,16 @@
 .input-group .placeholder--text {
   @apply rounded-full bg-gray-200 line-clamp-1 px-2.5 py-1 text-sm text-black-40 w-fit;
 }
+
+
+.v-popper--theme-dropdown .v-popper__inner {
+  @apply dark:bg-black-100 rounded-md border border-solid dark:border-white-20 border-black-20;
+}
+
+.v-popper--theme-dropdown .v-popper__arrow-outer {
+  @apply dark:!border-white-20 border-black-20
+}
+
+.v-popper__arrow-inner {
+  @apply dark:!border-black-100 border-white
+}

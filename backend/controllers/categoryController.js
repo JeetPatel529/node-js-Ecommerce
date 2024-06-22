@@ -27,7 +27,15 @@ const createCategory = async (req, res) => {
 
 const categoryList = async (req, res) => {
     try {
-        const category = await categoryModel.findAll()
+        const category = await categoryModel.findAll({
+            where: { is_delete: false }
+        });
+
+        // Increment visitor count for each category
+        for (let category of categories) {
+            category.category_visitor += 1;
+            await category.save();
+        }
 
         return responseHandle.successResponseWithData(res, 'Category created successfully', category);
     } catch (error) {
@@ -39,12 +47,61 @@ const categoryList = async (req, res) => {
     }
 }
 
-const updateCategory = (req, res) => {
+const updateCategory = async (req, res) => {
+    try {
+        const { category_id, category_name, category_description } = req.body;
+
+        const category = await categoryModel.findByPk(category_id);
+        if (!category) {
+            return responseHandle.errorResponse(res, 'Category not found');
+        }
+
+        category.category_name = category_name;
+        category.category_description = category_description;
+
+        if (req.files['category_img']) {
+            category.category_img = req.files['category_img'][0].filename;
+        }
+
+        if (req.files['category_bg_img']) {
+            category.category_bg_img = req.files['category_bg_img'][0].filename;
+        }
+
+        await category.save();
+
+        return responseHandle.successResponse(res, 'Category updated successfully');
+    } catch (error) {
+        if (error.name === 'SequelizeValidationError') {
+            return responseHandle.validationErrorWithData(res, 'Validation Error', error.errors);
+        } else {
+            return responseHandle.errorResponse(res, 'Error occurred while updating category');
+        }
+    }
 
 }
 
 
-const deleteCategory = (req, res) => {
+const deleteCategory = async (req, res) => {
+    try {
+        const { category_id } = req.body;
+
+        const category = await categoryModel.findByPk(category_id);
+        if (!category) {
+            return responseHandle.errorResponse(res, 'Category not found');
+        }
+
+        category.is_delete = true;
+        await category.save();
+
+        return responseHandle.successResponse(res, 'Category deleted')
+    } catch (error) {
+        if (error.name === 'SequelizeValidationError') {
+            return responseHandle.validationErrorWithData(res, 'Validation Error', error.errors);
+        } else {
+            return responseHandle.errorResponse(res, 'Error occurred while updating category');
+        }
+
+    }
 
 }
 

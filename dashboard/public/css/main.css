@@ -37,6 +37,10 @@
   @apply border-red-600;
 }
 
+.error-message {
+  @apply text-sm ml-2 text-red-600
+}
+
 .input-group.error label {
   @apply text-red-600;
 }
@@ -58,7 +62,7 @@
 }
 
 .form--btn.save:disabled {
-  @apply cursor-no-drop bg-opacity-25;
+  @apply cursor-no-drop bg-opacity-60;
 }
 
 .options--btn {

@@ -13,7 +13,7 @@ function toggleMode() {
 <template>
   <header class="main--header">
     <div class="flex items-center space-x-4">
-      <button @click="$emit('toggle_sidebar')">
+      <button @click="$emit('toggle_sidebar')" v-tooltip="'Toggle SideBar'">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -30,7 +30,7 @@ function toggleMode() {
           ></path>
         </svg>
       </button>
-      <button>
+      <button v-tooltip="'Add This page in Favorites List'">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -57,7 +57,7 @@ function toggleMode() {
       </ul>
     </div>
     <div class="flex items-center space-x-3">
-      <button class="fillnone" @click="toggleMode">
+      <button class="fillnone" @click="toggleMode" v-tooltip="'Toggle Theme'">
         <svg
           class="dark:block hidden"
           width="24"

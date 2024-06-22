@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { apihelper } from '@/helpers'
+import { apiHelper } from '@/helpers'
 import ModalLayout from '@/components/ModalLayout.vue'
 import Combobox from '@/components/Combobox.vue'
 
@@ -48,7 +48,7 @@ async function handleSubmit() {
   form_data.append('category_bg_img', formData.value.backgroundImage)
   form_data.append('category_name', formData.value.name)
   form_data.append('category_description', formData.value.description)
-  const response = await apihelper('add-category', form_data)
+  const response = await apiHelper('add-category', form_data)
   console.log(response)
 }
 </script>

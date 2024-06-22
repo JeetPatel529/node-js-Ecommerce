@@ -52,7 +52,11 @@ const routerArray = ref([
     <div class="block w-full">
       <p class="side--com-title">Dashboards</p>
       <ul class="space-y-1 block mt-1.5">
-        <li v-for="(item, index) in routerArray" :key="index">
+        <li
+          v-for="(item, index) in routerArray"
+          :key="index"
+          v-tooltip.right="'Go to' + ' ' + item.router_name"
+        >
           <router-link :to="item.router_link" class="router--link active">
             <div class="w-4 h-6"></div>
             <svg

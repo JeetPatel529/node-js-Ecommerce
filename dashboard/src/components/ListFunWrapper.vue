@@ -25,7 +25,7 @@ function handleAddFun() {
           />
         </svg>
       </button>
-      <button>
+      <button v-tooltip.top="'List Sorting'">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -54,6 +54,7 @@ function handleAddFun() {
     </div>
     <div>
       <div
+        v-tooltip.top="'Search item'"
         class="py-1.5 px-2.5 flex items-center gap-1.5 border border-solid border-black-10 rounded-lg bg-white-80 dark:bg-white-10"
       >
         <svg

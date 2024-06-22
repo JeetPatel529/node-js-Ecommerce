@@ -17,15 +17,15 @@ import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
         >
           <path
             d="M12 13.125C12.6213 13.125 13.125 12.6213 13.125 12C13.125 11.3787 12.6213 10.875 12 10.875C11.3787 10.875 10.875 11.3787 10.875 12C10.875 12.6213 11.3787 13.125 12 13.125Z"
-            fill="#191C1F"
+            class="fill-[#191C1F] dark:fill-white"
           />
           <path
             d="M18 13.125C18.6213 13.125 19.125 12.6213 19.125 12C19.125 11.3787 18.6213 10.875 18 10.875C17.3787 10.875 16.875 11.3787 16.875 12C16.875 12.6213 17.3787 13.125 18 13.125Z"
-            fill="#191C1F"
+            class="fill-[#191C1F] dark:fill-white"
           />
           <path
             d="M6 13.125C6.62132 13.125 7.125 12.6213 7.125 12C7.125 11.3787 6.62132 10.875 6 10.875C5.37868 10.875 4.875 11.3787 4.875 12C4.875 12.6213 5.37868 13.125 6 13.125Z"
-            fill="#191C1F"
+            class="fill-[#191C1F] dark:fill-white"
           />
         </svg>
       </MenuButton>
@@ -40,7 +40,7 @@ import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
       leave-to-class="transform scale-95 opacity-0"
     >
       <MenuItems
-        class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-black-10 rounded-md bg-white shadow ring-1 ring-black-5 focus:outline-none"
+        class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-black-10 dark:divide-white-20 rounded-md bg-white dark:bg-black-100 shadow ring-1 ring-black-5 dark:ring-white-20 focus:outline-none"
       >
         <slot></slot>
       </MenuItems>

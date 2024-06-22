@@ -3,7 +3,9 @@ import OptionWrapper from '@/components/OptionWrapper.vue'
 </script>
 
 <template>
-  <div class="w-full bg-white rounded-lg border border-solid border-black-20">
+  <div
+    class="w-full bg-white dark:bg-black-100 rounded-lg border border-solid border-black-20 dark:border-white-20"
+  >
     <div class="list---row head">
       <div class="pName">
         <p>Product Name</p>
@@ -62,7 +64,7 @@ import OptionWrapper from '@/components/OptionWrapper.vue'
 
 <style scoped>
 .list---row {
-  @apply flex items-center w-full py-1.5 px-2.5 border-b border-solid border-black-5;
+  @apply flex items-center w-full py-1.5 px-2.5 border-b border-solid border-black-5 dark:border-white-20;
 }
 
 .list---row:nth-last-child(1) {
@@ -70,7 +72,7 @@ import OptionWrapper from '@/components/OptionWrapper.vue'
 }
 
 .list---row.head p {
-  @apply text-sm text-black-80;
+  @apply text-sm text-black-80 dark:text-white-80;
 }
 
 .pName {

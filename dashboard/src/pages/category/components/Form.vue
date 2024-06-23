@@ -32,8 +32,12 @@ async function handleSubmit() {
   form_data.append('category_name', formData.value.name)
   form_data.append('category_description', formData.value.description)
 
-  const response = await apiHelper('create-category', form_data)
-  console.log(response)
+  try {
+    const response = await apiHelper('create-category', form_data)
+    console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>
 

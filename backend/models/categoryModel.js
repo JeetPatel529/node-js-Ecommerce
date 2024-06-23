@@ -45,9 +45,11 @@ const Category = sequelize.define('Category', {
     },
     category_img: {
         type: DataTypes.TEXT,
+        allowNull: false,
     },
     category_bg_img: {
         type: DataTypes.TEXT,
+        allowNull: false,
     },
     is_delete: {
         type: DataTypes.BOOLEAN,

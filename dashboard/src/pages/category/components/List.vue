@@ -1,6 +1,10 @@
 <script setup>
 import OptionWrapper from '@/components/OptionWrapper.vue'
 import CategoryDetails from '@/pages/category/components/CategoryDetails.vue'
+
+const props = defineProps({
+  categoryList: Array
+})
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup>
+import { apiHelper } from '@/helpers'
 import { ref } from 'vue'
 import LayoutWrapper from '@/layout/LayoutWrapper.vue'
 import ListFunWrapper from '@/components/ListFunWrapper.vue'
@@ -9,6 +10,7 @@ import DeleteModel from '@/components/DeleteModel.vue'
 
 const formOpen = ref(false)
 const deleteModal = ref(false)
+const categoryList = ref([])
 const breadcrumb = ref([
   {
     name: 'Home',
@@ -30,6 +32,13 @@ function handleDelete(value) {
     deleteModal.value = false
   }
 }
+
+// fetchCategoryList()
+
+async function fetchCategoryList() {
+  const response = await apiHelper('category-list')
+  console.log(response)
+}
 </script>
 
 <template>
@@ -39,7 +48,7 @@ function handleDelete(value) {
       <div class="space-y-4">
         <ListFunWrapper @addBtn="formOpen = !formOpen" />
         <div class="w-full">
-          <List />
+          <List :categoryList="categoryList" />
         </div>
         <div class="w-full flex items-center justify-end">
           <Pagination />

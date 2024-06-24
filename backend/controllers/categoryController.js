@@ -26,23 +26,24 @@ const createCategory = async (req, res) => {
 }
 
 const categoryList = async (req, res) => {
+    console.log("call")
     try {
         const category = await categoryModel.findAll({
             where: { is_delete: false }
         });
 
-        // Increment visitor count for each category
-        for (let category of categories) {
-            category.category_visitor += 1;
-            await category.save();
-        }
 
-        return responseHandle.successResponseWithData(res, 'Category created successfully', category);
+        // for (let category of categories) {
+        //     category.category_visitor += 1;
+        //     await category.save();
+        // }
+
+        return responseHandle.successResponseWithData(res, 'Categories fetched successfully', category);
     } catch (error) {
         if (error.name === 'SequelizeValidationError') {
             return responseHandle.validationErrorWithData(res, 'Validation Error', error.errors);
         } else {
-            return responseHandle.errorResponse(res, 'Error occurred while creating category');
+            return responseHandle.errorResponse(res, 'Error occurred while fetching categories');
         }
     }
 }

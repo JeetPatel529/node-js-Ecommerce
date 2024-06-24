@@ -5,6 +5,16 @@ import CategoryDetails from '@/pages/category/components/CategoryDetails.vue'
 const props = defineProps({
   categoryList: Array
 })
+
+const emit = defineEmits(['delete', 'status'])
+
+function handleDelete(value) {
+  emit('delete', value)
+}
+
+function handleStatus(value) {
+  emit('status', value)
+}
 </script>
 
 <template>
@@ -24,18 +34,24 @@ const props = defineProps({
       <div class="status"></div>
       <div class="options"></div>
     </div>
-    <VDropdown class="list---row">
-      <div class="cName">
-        <p>This is Category</p>
-      </div>
+    <div class="list---row" v-for="(item, index) in props.categoryList" :key="index">
+      <VDropdown class="cName">
+        <p>{{ item.category_name }}</p>
+        <template #popper>
+          <CategoryDetails />
+        </template>
+      </VDropdown>
       <div class="tPro">
-        <p>20+</p>
+        <p>{{ item.category_total_item }}</p>
       </div>
       <div class="tVis">
-        <p>Total Visitor</p>
+        <p>{{ item.category_visitor }}</p>
       </div>
       <div class="status">
-        <button class="status--btn disable">disable</button>
+        <button class="status--btn enable" v-if="item.category_status" @click="handleStatus(item)">
+          enable
+        </button>
+        <button class="status--btn disable" v-else @click="handleStatus(item)">disable</button>
       </div>
       <div class="options">
         <OptionWrapper>
@@ -44,17 +60,14 @@ const props = defineProps({
               <p>Edit</p>
             </div>
           </button>
-          <button class="options--btn">
+          <button class="options--btn" @click="handleDelete(item)">
             <div class="flex items-center gap-1.5">
               <p>Delete</p>
             </div>
           </button>
         </OptionWrapper>
       </div>
-      <template #popper>
-        <CategoryDetails />
-      </template>
-    </VDropdown>
+    </div>
   </div>
 </template>
 

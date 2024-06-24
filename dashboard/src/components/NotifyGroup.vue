@@ -16,7 +16,7 @@
           move-delay="delay-300"
         >
           <div
-            class="flex w-fit max-w-xs mx-auto mt-1.5 overflow-hidden bg-black-100 px-3.5 py-2 text-center items-center justify-center rounded-lg shadow-md"
+            class="flex w-fit max-w-xs mx-auto mt-1.5 overflow-hidden border border-solid border-white-20 bg-black-100 px-3.5 py-2 text-center items-center justify-center rounded-lg shadow-md"
             v-for="notification in notifications"
             :key="notification.id"
           >

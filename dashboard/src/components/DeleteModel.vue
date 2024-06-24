@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
 
 const props = defineProps({
@@ -10,7 +9,11 @@ const props = defineProps({
 const emit = defineEmits(['close'])
 
 function closeModal(status) {
-  emit('close', status)
+  if (status == 1) {
+    emit('close', status)
+  } else {
+    emit('close')
+  }
 }
 </script>
 

@@ -7,8 +7,8 @@ export async function apiHelper(apiName, formData) {
     try {
         const response = await axios.post(`${BASEURL}/${apiName}`, formData);
 
-        if (response.status >= 200 && response.status < 300) {
-            return response;
+        if (response) {
+            return response.data;
         } else {
             notify(
                 {
@@ -30,6 +30,5 @@ export async function apiHelper(apiName, formData) {
             },
             1500
         );
-        throw error;
     }
 }

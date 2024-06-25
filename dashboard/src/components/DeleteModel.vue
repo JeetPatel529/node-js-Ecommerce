@@ -29,9 +29,9 @@ function closeModal(status) {
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black-80 backdrop-blur-sm" />
+        <div class="fixed inset-0 bg-black-80 dark:bg-black-40 backdrop-blur-sm z-40" />
       </TransitionChild>
-      <div class="fixed inset-0 overflow-y-auto">
+      <div class="fixed inset-0 overflow-y-auto z-50">
         <div class="flex min-h-full items-center justify-center p-4 text-center">
           <TransitionChild
             as="template"
@@ -43,11 +43,14 @@ function closeModal(status) {
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-black-80 border border-solid dark:border-white-20 border-black-20 p-6 text-left align-middle shadow-xl transition-all"
             >
               <div class="space-y-8">
                 <div class="space-y-1.5">
-                  <DialogTitle as="h3" class="text-lg font-medium leading-6 text-black-100">
+                  <DialogTitle
+                    as="h3"
+                    class="text-lg font-medium leading-6 text-black-100 dark:text-white"
+                  >
                     Delete {{ props.delete_item }}
                   </DialogTitle>
                   <p class="text-sm text-gray-500">

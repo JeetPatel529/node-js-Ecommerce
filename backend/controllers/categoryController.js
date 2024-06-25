@@ -104,6 +104,28 @@ const deleteCategory = async (req, res) => {
     }
 }
 
+const recoverCategory = async (req, res) => {
+    try {
+        const { category_id } = req.body;
+
+        const category = await categoryModel.findByPk(category_id);
+        if (!category) {
+            return responseHandle.errorResponse(res, 'Category not found');
+        }
+
+        category.is_delete = false;
+        await category.save();
+
+        return responseHandle.successResponse(res, 'Category deleted')
+    } catch (error) {
+        if (error.name === 'SequelizeValidationError') {
+            return responseHandle.validationErrorWithData(res, 'Validation Error', error.errors);
+        } else {
+            return responseHandle.errorResponse(res, 'Error occurred while updating category');
+        }
+    }
+}
+
 
 const statusCategory = async (req, res) => {
     try {
@@ -134,4 +156,4 @@ const statusCategory = async (req, res) => {
 }
 
 
-module.exports = { createCategory, categoryList, deleteCategory, updateCategory, statusCategory }
+module.exports = { createCategory, categoryList, deleteCategory, updateCategory, statusCategory, recoverCategory }

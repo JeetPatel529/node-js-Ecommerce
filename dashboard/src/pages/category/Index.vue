@@ -1,6 +1,6 @@
 <script setup>
 import { apiHelper } from '@/helpers'
-import { useAlertStore } from '@/stores'
+import { useAlertStore, useRecoverStore } from '@/stores'
 import { ref } from 'vue'
 import LayoutWrapper from '@/layout/LayoutWrapper.vue'
 import ListFunWrapper from '@/components/ListFunWrapper.vue'
@@ -8,9 +8,11 @@ import List from '@/pages/category/components/List.vue'
 import Form from '@/pages/category/components/Form.vue'
 import Pagination from '@/components/Pagination.vue'
 import DeleteModel from '@/components/DeleteModel.vue'
+import RecoverModel from '@/components/RecoverModel.vue'
 
 const formOpen = ref(false)
 const deleteModal = ref(false)
+const recoverModal = ref(false)
 const categoryList = ref([])
 const categoryItem = ref({})
 const breadcrumb = ref([
@@ -49,6 +51,11 @@ async function deleteCategory() {
     const response = await apiHelper('category-delete', form_data)
     if (response.success == 1) {
       loadCategoryList()
+      recoverModal.value = true
+      useRecoverStore().applyNewItemInRecover(
+        categoryItem.value.category_id,
+        categoryItem.value.category_name
+      )
       useAlertStore().fooAlert(response.message)
     }
   } catch (error) {
@@ -84,6 +91,26 @@ async function loadCategoryList() {
     console.log(error)
   }
 }
+
+async function handle_req(status) {
+  if (status) {
+    const form_data = new FormData()
+    form_data.append('category_id', useRecoverStore().recoverID)
+
+    try {
+      const response = await apiHelper('category-recover', form_data)
+      if (response.success == 1) {
+        loadCategoryList()
+        recoverModal.value = false
+        useAlertStore().fooAlert(response.message)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  } else {
+    recoverModal.value = false
+  }
+}
 </script>
 
 <template>
@@ -106,9 +133,10 @@ async function loadCategoryList() {
     </div>
     <DeleteModel
       :isOpen="deleteModal"
-      delete_item="delete this item"
+      :delete_item="categoryItem.category_name"
       @close="handleDeleteConfirmation"
     />
+    <RecoverModel @click="handle_req" v-if="recoverModal" />
     <Form @close="closeForm" :isOpen="formOpen" />
   </LayoutWrapper>
 </template>

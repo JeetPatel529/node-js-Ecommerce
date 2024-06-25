@@ -69,6 +69,10 @@
   @apply w-full px-3.5 py-2 flex items-center justify-between;
 }
 
+.options--btn:hover {
+  @apply bg-white-5
+}
+
 .options--btn p {
   @apply text-base capitalize;
 }

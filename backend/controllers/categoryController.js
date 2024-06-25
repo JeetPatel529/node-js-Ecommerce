@@ -113,10 +113,14 @@ const recoverCategory = async (req, res) => {
             return responseHandle.errorResponse(res, 'Category not found');
         }
 
+        if (category.is_delete == false) {
+            return responseHandle.errorResponse(res, 'This Category already recover.');
+        }
+
         category.is_delete = false;
         await category.save();
 
-        return responseHandle.successResponse(res, 'Category deleted')
+        return responseHandle.successResponse(res, 'Category recover.')
     } catch (error) {
         if (error.name === 'SequelizeValidationError') {
             return responseHandle.validationErrorWithData(res, 'Validation Error', error.errors);
@@ -155,5 +159,36 @@ const statusCategory = async (req, res) => {
 
 }
 
+const visitorCount = async (req, res) => {
+    try {
+        const { category_id, visitor_ip } = req.body;
 
-module.exports = { createCategory, categoryList, deleteCategory, updateCategory, statusCategory, recoverCategory }
+        const category = await categoryModel.findByPk(category_id);
+        if (!category) {
+            return responseHandle.errorResponse(res, 'Category not found');
+        }
+
+        // here db query check for ip 
+        if (visitor_ip == "192.168.0.42"){
+            visitor_count = category.category_visitor
+        } else {
+            visitor_count = category.category_visitor + 1
+        }
+
+        category.category_visitor = visitor_count
+        await category.save()
+
+        return responseHandle.successResponse(res, 'Category visitor count increase.')
+    } catch (error) {
+        if (error.name === 'SequelizeValidationError') {
+            return responseHandle.validationErrorWithData(res, 'Validation Error', error.errors);
+        } else {
+            return responseHandle.errorResponse(res, 'Error occurred while updating category');
+        }
+
+    }
+
+}
+
+
+module.exports = { createCategory, categoryList, deleteCategory, updateCategory, statusCategory, recoverCategory, visitorCount }

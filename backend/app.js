@@ -26,8 +26,10 @@ app.use(cors());
 app.use('/public', express.static('public'));
 
 app.use(upload.fields([{ name: 'category_img', maxCount: 1 }, { name: 'category_bg_img', maxCount: 1 }]));
+app.use(upload.fields([{ name: 'product_img', maxCount: 1 }]));
 
 app.use("/", routers.categoryRouter);
+app.use("/", routers.productRouter);
 
 app.use((req, res, next) => {
     res.status(404).json({ error: "Route not found" });

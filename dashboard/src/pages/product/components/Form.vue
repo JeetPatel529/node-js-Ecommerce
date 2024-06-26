@@ -19,12 +19,12 @@ const people = ref([
   { id: 6, name: 'Hellen Schmidt' }
 ])
 
-const selectedPeople = ref([])
+const btnLoader = ref(false)
+const isFormSubmitted = ref(false)
 const query = ref('')
 
 function updateSelected(newSelected) {
-  selectedPeople.value = newSelected
-  console.log(selectedPeople)
+  formData.value.selectedCategory = newSelected
 }
 
 function updateQuery(newQuery) {
@@ -33,8 +33,9 @@ function updateQuery(newQuery) {
 
 const formData = ref({
   image: null,
-  backgroundImage: null,
-  name: '',
+  originalPrice: '',
+  sellingPrice: null,
+  selectedCategory: [],
   description: ''
 })
 
@@ -43,12 +44,17 @@ function closeModal(status) {
 }
 
 async function handleSubmit() {
+  isFormSubmitted.value = true
+  btnLoader.value = true
   const form_data = new FormData()
-  form_data.append('category_img', formData.value.image)
-  form_data.append('category_bg_img', formData.value.backgroundImage)
-  form_data.append('category_name', formData.value.name)
-  form_data.append('category_description', formData.value.description)
-  const response = await apiHelper('add-category', form_data)
+  form_data.append('product_name', formData.value.name)
+  form_data.append('product_description', formData.value.description)
+  form_data.append('product_original_price', formData.value.originalPrice)
+  form_data.append('product_selling_price', formData.value.sellingPrice)
+  form_data.append('connected_category', formData.value.selectedCategory.join(','))
+  form_data.append('product_img', formData.value.image)
+
+  const response = await apiHelper('create-product', form_data)
   console.log(response)
 }
 </script>
@@ -57,60 +63,97 @@ async function handleSubmit() {
   <ModalLayout :isOpen="isOpen" @close="closeModal">
     <form class="space-y-6" @submit.prevent="handleSubmit">
       <div class="space-y-2.5">
-        <div class="input-group">
-          <label>Image*</label>
-          <p class="placeholder--text">Choose File</p>
-          <input type="file" class="input" @change="(e) => (formData.image = e.target.files[0])" />
-        </div>
-        <div class="input-group">
-          <label>Name*</label>
-          <input
-            type="text"
-            placeholder="Enter Product name"
-            class="input"
-            v-model="formData.name"
-          />
-        </div>
-        <div class="input-group">
-          <label>Choose Category*</label>
-          <Combobox
-            :people="people"
-            :initialSelected="selectedPeople"
-            :initialQuery="query"
-            @update:selected="updateSelected"
-            @update:query="updateQuery"
-          />
-        </div>
-        <div class="w-full grid grid-cols-2 gap-2.5">
-          <div class="input-group">
+        <div class="space-y-1">
+          <div class="input-group" :class="{ error: isFormSubmitted && !formData.image }">
+            <label>Image*</label>
+            <p class="placeholder--text">Choose File</p>
             <input
-              type="number"
-              placeholder="Product Origin Price*"
+              type="file"
               class="input"
-              v-model="formData.name"
+              @change="(e) => (formData.image = e.target.files[0])"
             />
           </div>
-          <div class="input-group">
+          <p class="error-message" v-if="isFormSubmitted && !formData.image">Image is required</p>
+        </div>
+        <div class="space-y-1">
+          <div class="input-group" :class="{ error: isFormSubmitted && !formData.name }">
+            <label>Name*</label>
             <input
               type="text"
-              placeholder="Product Selling Price"
+              placeholder="Enter Product name"
               class="input"
               v-model="formData.name"
             />
           </div>
+          <p class="error-message" v-if="isFormSubmitted && !formData.name">
+            Background Image is required
+          </p>
         </div>
-        <div class="input-group">
-          <label>Description*</label>
-          <textarea
-            class="input"
-            placeholder="Enter Product description"
-            v-model="formData.description"
-          ></textarea>
+        <div class="space-y-1">
+          <div
+            class="input-group"
+            :class="{ error: isFormSubmitted && !formData.selectedCategory }"
+          >
+            <label>Choose Category*</label>
+            <Combobox
+              :people="people"
+              :initialSelected="selectedPeople"
+              :initialQuery="query"
+              @update:selected="updateSelected"
+              @update:query="updateQuery"
+            />
+          </div>
+          <p class="error-message" v-if="isFormSubmitted && !formData.selectedCategory">
+            Background Image is required
+          </p>
+        </div>
+        <div class="w-full grid grid-cols-2 gap-2.5">
+          <div class="space-y-1">
+            <div class="input-group" :class="{ error: isFormSubmitted && !formData.originalPrice }">
+              <input
+                type="number"
+                placeholder="Product Origin Price*"
+                class="input"
+                v-model="formData.originalPrice"
+              />
+            </div>
+            <p class="error-message" v-if="isFormSubmitted && !formData.originalPrice">
+              Background Image is required
+            </p>
+          </div>
+          <div class="space-y-1">
+            <div class="input-group" :class="{ error: isFormSubmitted && !formData.sellingPrice }">
+              <input
+                type="text"
+                placeholder="Product Selling Price"
+                class="input"
+                v-model="formData.sellingPrice"
+              />
+            </div>
+            <p class="error-message" v-if="isFormSubmitted && !formData.sellingPrice">
+              Background Image is required
+            </p>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <div class="input-group" :class="{ error: isFormSubmitted && !formData.description }">
+            <label>Description*</label>
+            <textarea
+              class="input"
+              placeholder="Enter Product description"
+              v-model="formData.description"
+            ></textarea>
+          </div>
+          <p class="error-message" v-if="isFormSubmitted && !formData.description">
+            Background Image is required
+          </p>
         </div>
       </div>
       <div class="w-full grid grid-cols-2 gap-4 px-2.5">
         <button type="button" class="form--btn" @click="closeModal">Cancel</button>
-        <button type="submit" class="form--btn save">Save</button>
+        <button type="submit" class="form--btn save" :disabled="btnLoader">
+          {{ btnLoader ? 'Wait A Minute...' : 'Save' }}
+        </button>
       </div>
     </form>
   </ModalLayout>

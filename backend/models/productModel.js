@@ -53,15 +53,10 @@ const Product = sequelize.define('Product', {
         },
     },
     connected_category: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            notNull: { msg: 'Category IDs cannot be null' },
-            isArray(value) {
-                if (!Array.isArray(value)) {
-                    throw new Error('Category IDs must be an array of integers');
-                }
-            },
+            notNull: { msg: 'Category IDs cannot be null' }
         },
     },
     product_img: {

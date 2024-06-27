@@ -21,6 +21,7 @@ const people = ref([
 
 const btnLoader = ref(false)
 const isFormSubmitted = ref(false)
+const selectedPeople = ref([])
 const query = ref('')
 
 function updateSelected(newSelected) {

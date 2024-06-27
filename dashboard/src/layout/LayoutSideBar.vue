@@ -26,6 +26,24 @@ const routerArray = ref([
     router_name: 'Products',
     router_link: '/products/list',
     active_path: '/'
+  },
+  {
+    id: '#ds9v29',
+    router_name: 'Visitor',
+    router_link: '/visitor/list',
+    active_path: '/'
+  },
+  {
+    id: '#efd5qs',
+    router_name: 'Orders',
+    router_link: '/orders/list',
+    active_path: '/'
+  },
+  {
+    id: '#wd6cu2',
+    router_name: 'Blog',
+    router_link: '/blog/list',
+    active_path: '/'
   }
 ])
 </script>
@@ -144,6 +162,114 @@ const routerArray = ref([
               />
               <path
                 d="M21 9V10.5C21 11.2956 20.6839 12.0587 20.1213 12.6213C19.5587 13.1839 18.7956 13.5 18 13.5C17.2044 13.5 16.4413 13.1839 15.8787 12.6213C15.3161 12.0587 15 11.2956 15 10.5V9"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              v-if="item.id === '#ds9v29'"
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="stroke"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.625 11.25C9.24632 11.25 9.75 10.7463 9.75 10.125C9.75 9.50368 9.24632 9 8.625 9C8.00368 9 7.5 9.50368 7.5 10.125C7.5 10.7463 8.00368 11.25 8.625 11.25Z"
+                fill="#191C1F"
+              />
+              <path
+                d="M15.375 11.25C15.9963 11.25 16.5 10.7463 16.5 10.125C16.5 9.50368 15.9963 9 15.375 9C14.7537 9 14.25 9.50368 14.25 10.125C14.25 10.7463 14.7537 11.25 15.375 11.25Z"
+                fill="#191C1F"
+              />
+              <path
+                d="M15.8996 14.25C15.5031 14.9331 14.9342 15.5 14.2498 15.8941C13.5653 16.2882 12.7894 16.4956 11.9996 16.4956C11.2098 16.4956 10.4339 16.2882 9.74945 15.8941C9.06501 15.5 8.49609 14.9331 8.09961 14.25"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              v-if="item.id === '#efd5qs'"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="stroke"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.25 17.25H6.54375L3.92813 2.86875C3.89752 2.69653 3.80768 2.54042 3.67415 2.42743C3.54062 2.31444 3.37179 2.25168 3.19687 2.25H1.5"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M7.5 21C8.53553 21 9.375 20.1605 9.375 19.125C9.375 18.0895 8.53553 17.25 7.5 17.25C6.46447 17.25 5.625 18.0895 5.625 19.125C5.625 20.1605 6.46447 21 7.5 21Z"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17.25 21C18.2855 21 19.125 20.1605 19.125 19.125C19.125 18.0895 18.2855 17.25 17.25 17.25C16.2145 17.25 15.375 18.0895 15.375 19.125C15.375 20.1605 16.2145 21 17.25 21Z"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5.85938 13.5H17.6344C17.985 13.5011 18.3247 13.3785 18.5939 13.1539C18.8631 12.9293 19.0445 12.617 19.1063 12.2719L20.25 6H4.5"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              v-if="item.id === '#wd6cu2'"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="stroke"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M7.5 3.75V20.25"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10.5 10.5H16.5"
+                stroke="#191C1F"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10.5 13.5H16.5"
+                stroke="#191C1F"
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"

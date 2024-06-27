@@ -290,6 +290,7 @@ a:hover {
     bottom: 0%;
     left: 0%;
     right: 0%;
+    object-fit: cover;
     overflow: hidden;
     transition: 1s;
     -webkit-transition: 1s;
@@ -315,10 +316,18 @@ a:hover {
     -o-transform: translateX(-50%);
 }
 
-.product-card .product-details p {
-    color: gray;
+
+.product-card .product-details h5 {
+    color: #FFFFFF;
 }
 
+.product-card .product-details h6 {
+    color: #FFFFFF;
+}
+
+.product-card .product-details p {
+    color: #F5F5F7;
+}
 
 .product-list-grid {
     grid-template-rows: auto auto auto;
